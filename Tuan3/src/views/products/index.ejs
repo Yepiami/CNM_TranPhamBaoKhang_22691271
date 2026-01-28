@@ -1,0 +1,34 @@
+
+<%- include('../partials/header', { title }) %>
+
+<a class="btn" href="/products/new">+ Thêm sản phẩm</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>Ảnh</th><th>Tên</th><th>Giá</th><th>Tồn</th><th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% products.forEach(p => { %>
+        <tr>
+            <td style="width:160px">
+                <% if (p.url_image) { %>
+                    <img src="<%= p.url_image %>" alt="<%= p.name %>" style="max-width:150px; height:auto;">
+                <% } %>
+            </td>
+            <td><%= p.name %></td>
+            <td><%= p.price %></td>
+            <td><%= p.quantity %></td>
+            <td>
+                <a class="btn" href="/products/<%= p.id %>/edit">Sửa</a>
+                <form method="post" action="/products/<%= p.id %>/delete" style="display:inline">
+                    <button type="submit">Xoá</button>
+                </form>
+            </td>
+        </tr>
+    <% }) %>
+    </tbody>
+</table>
+
+<%- include('../partials/footer') %>
